@@ -58,8 +58,8 @@ apt-get install -y -qq firefox >>$LOGFILE 2>&1
 ((
 chmod a+x /home/vagrant/Desktop/slow_firefox.desktop
 
-#echo "Installing Firebug add-on to Firefox"
-#firefox -install-global-extension /home/vagrant/firebug*.xpi
+echo "Downloading Firebug add-on to Firefox"
+wget -qO /home/vagrant/Desktop/firebug.xpi https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi?src=search >>$LOGFILE 2>&1
 
 echo "Setting default home page in Firefox"
 ) 2>&1) | tee -a $LOGFILE
@@ -102,7 +102,6 @@ Vagrant.configure(2) do |config|
     config.vm.provision "shell", inline:
         "echo \"Clearing log file\"; echo \"\" >/vagrant/log/setup.log"
     config.vm.provision "shell", inline: $script1
-    config.vm.provision "file", source: "resources/firebug-2.0.8-fx-vegarg.xpi", destination: "/home/vagrant/Desktop/firebug-2.0.8-fx-vegarg.xpi"
     config.vm.provision "file", source: "resources/slow_firefox.desktop", destination: "/home/vagrant/Desktop/slow_firefox.desktop"
     config.vm.provision "shell", inline: $script2
 end
