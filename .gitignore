@@ -12,3 +12,6 @@ Session.vim
 ### Vagrant ###
 .vagrant/
 
+
+### Log files ###
+log/
